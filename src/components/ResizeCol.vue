@@ -25,6 +25,14 @@ export default {
       type: Number,
       default: 400,
     },
+    minWidth: {
+      type: Number,
+      default: 20,
+    },
+    maxWidth: {
+      type: Number,
+      default: -1,
+    },
     height: {
       type: String,
       default: "400px",
@@ -73,8 +81,10 @@ export default {
         newPos = e.changedTouches[0].clientX;
         const movingDistance = oldPos - newPos;
         newWidth = parseInt(oldWidth - movingDistance);
-        if (newWidth <= 20) {
-          vue.reWidth = 20;
+        if (newWidth <= vue.minWidth) {
+          vue.reWidth = vue.minWidth;
+        } else if(newWidth >= vue.maxWidth && vue.maxWidth >= 0 ) {
+            vue.reWidth = vue.maxWidth;
         } else {
           vue.reWidth = newWidth;
         };
@@ -109,8 +119,10 @@ export default {
         newPos = e.clientX;
         const movingDistance = oldPos - newPos;
         newWidth = parseInt(oldWidth - movingDistance);
-        if (newWidth <= 20) {
-          vue.reWidth = 20;
+        if (newWidth <= vue.minWidth) {
+          vue.reWidth = vue.minWidth;
+        } else if(newWidth >= vue.maxWidth && vue.maxWidth >= 0) {
+            vue.reWidth = vue.maxWidth;
         } else {
           vue.reWidth = newWidth;
         };

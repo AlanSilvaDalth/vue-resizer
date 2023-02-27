@@ -56,6 +56,18 @@ props: {
     type: String,
     default: "400px",
   },
+  // min width of the container
+  // units: px
+  minWidth: {
+    type: Number,
+    default: 20,
+  },
+  // max width of the container
+  // units: px
+  maxWidth: {
+    type: Number,
+    default: -1,
+  },
   // height of the container
   // units: any
   height: {

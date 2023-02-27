@@ -43,6 +43,22 @@ export default {
       type: Number,
       default: 400,
     },
+    minWidth: {
+      type: Number,
+      default: 20,
+    },
+    maxWidth: {
+      type: Number,
+      default: -1,
+    },
+    minHeight: {
+      type: Number,
+      default: 20,
+    },
+    maxHeight: {
+      type: Number,
+      default: -1,
+    },
     sliderColor: {
       type: String,
       default: "#6f808d",
@@ -90,8 +106,10 @@ export default {
         newPos = e.changedTouches[0].clientY;
         const movingDistance = oldPos - newPos;
         newHeight = parseInt(oldHeight - movingDistance);
-        if (newHeight <= 20) {
-          vue.reHeight = 20;
+        if (newHeight <= vue.minHeight) {
+          vue.reHeight = vue.minHeight;
+        } else if(newHeight >= vue.maxHeight && vue.maxHeight >= 0 ) {
+            vue.reHeight = vue.maxHeight;
         } else {
           vue.reHeight = newHeight;
         };
@@ -128,8 +146,10 @@ export default {
         newPos = e.clientY;
         const movingDistance = oldPos - newPos;
         newHeight = parseInt(oldHeight - movingDistance);
-        if (newHeight <= 20) {
-          vue.reHeight = 20;
+        if (newHeight <= vue.minHeight) {
+          vue.reHeight = vue.minHeight;
+        } else if(newHeight >= vue.maxHeight && vue.maxHeight >= 0 ) {
+            vue.reHeight = vue.maxHeight;
         } else {
           vue.reHeight = newHeight;
         };
@@ -162,8 +182,10 @@ export default {
         newPos = e.changedTouches[0].clientX;
         const movingDistance = oldPos - newPos;
         newWidth = parseInt(oldWidth - movingDistance);
-        if (newWidth <= 20) {
-          vue.reWidth = 20;
+        if (newWidth <= vue.minWidth) {
+          vue.reWidth = vue.minWidth;
+        } else if(newWidth >= vue.maxWidth && vue.maxWidth >= 0 ) {
+            vue.reWidth = vue.maxWidth;
         } else {
           vue.reWidth = newWidth;
         };
@@ -198,8 +220,10 @@ export default {
         newPos = e.clientX;
         const movingDistance = oldPos - newPos;
         newWidth = parseInt(oldWidth - movingDistance);
-        if (newWidth <= 20) {
-          vue.reWidth = 20;
+        if (newWidth <= vue.minWidth) {
+          vue.reWidth = vue.minWidth;
+        } else if(newWidth >= vue.maxWidth && vue.maxWidth >= 0 ) {
+            vue.reWidth = vue.maxWidth;
         } else {
           vue.reWidth = newWidth;
         };

@@ -31,6 +31,14 @@ export default {
       type: Number,
       default: 400,
     },
+    minHeight: {
+      type: Number,
+      default: 20,
+    },
+    maxHeight: {
+      type: Number,
+      default: -1,
+    },
     width: {
       type: String,
       default: "400px",
@@ -81,8 +89,10 @@ export default {
         newPos = e.changedTouches[0].clientY;
         const movingDistance = oldPos - newPos;
         newHeight = parseInt(oldHeight - movingDistance);
-        if (newHeight <= 20) {
-          vue.reHeight = 20;
+        if (newHeight <= vue.minHeight) {
+          vue.reHeight = vue.minHeight;
+        } else if(newHeight >= vue.maxHeight && vue.maxHeight >= 0 ) {
+            vue.reHeight = vue.maxHeight;
         } else {
           vue.reHeight = newHeight;
         };
@@ -119,8 +129,10 @@ export default {
         newPos = e.clientY;
         const movingDistance = oldPos - newPos;
         newHeight = parseInt(oldHeight - movingDistance);
-        if (newHeight <= 20) {
-          vue.reHeight = 20;
+        if (newHeight <= vue.minHeight) {
+          vue.reHeight = vue.minHeight;
+        } else if(newHeight >= vue.maxHeight && vue.maxHeight >= 0 ) {
+            vue.reHeight = vue.maxHeight;
         } else {
           vue.reHeight = newHeight;
         };
